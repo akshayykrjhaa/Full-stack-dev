@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
-  <rect width="400" height="400" fill="#dff6f0" />
-  <circle cx="200" cy="145" r="72" fill="#ffffff" opacity="0.9" />
-  <path d="M110 334c12-62 60-100 90-100s78 38 90 100" fill="#ffffff" opacity="0.9" />
-  <text x="200" y="372" text-anchor="middle" font-size="42" font-family="Arial, sans-serif" fill="#2f8573">NV</text>
-</svg>

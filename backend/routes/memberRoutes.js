@@ -1,6 +1,7 @@
 const express = require("express");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
 const Member = require("../models/Member");
 
 const router = express.Router();
@@ -72,6 +73,48 @@ router.get("/:id", async (req, res) => {
     }
 
     res.status(500).json({ message: "Could not fetch member details." });
+  }
+});
+
+// PUT /api/members/:id
+// Update a team member. A new image is optional during edit.
+router.put("/:id", upload.single("image"), async (req, res) => {
+  try {
+    const { name, role, email } = req.body;
+
+    if (!name || !role || !email) {
+      return res.status(400).json({ message: "Name, role, and email are required." });
+    }
+
+    const member = await Member.findById(req.params.id);
+
+    if (!member) {
+      return res.status(404).json({ message: "Member not found." });
+    }
+
+    // If a new image is uploaded, keep the new filename and remove the old local file.
+    if (req.file) {
+      const oldImagePath = path.join(__dirname, "..", "uploads", member.image);
+
+      if (fs.existsSync(oldImagePath) && member.image !== req.file.filename) {
+        fs.unlinkSync(oldImagePath);
+      }
+
+      member.image = req.file.filename;
+    }
+
+    member.name = name;
+    member.role = role;
+    member.email = email;
+
+    const updatedMember = await member.save();
+    res.json(updatedMember);
+  } catch (error) {
+    if (error.name === "CastError") {
+      return res.status(404).json({ message: "Member not found." });
+    }
+
+    res.status(500).json({ message: "Could not update member." });
   }
 });
 

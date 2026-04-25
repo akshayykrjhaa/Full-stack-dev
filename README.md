@@ -1,93 +1,107 @@
 # Student Team Members Management Application
 
-A simple and beginner-friendly MERN stack project for managing student team members.
+## Project Description
 
-This project lets you:
+This is a simple MERN stack application for managing student team members.
+
+The app allows users to:
 - add a new team member
 - upload a member photo
-- view all members
-- open full member details
-- seed MongoDB with sample members and placeholder photos
+- view all team members
+- view full details of one member
+- edit member information and update member photos
 
-## Tech Stack
+Frontend is built with React, React Router, and Axios.
 
-- Frontend: React, React Router, Axios, Vite
-- Backend: Node.js, Express
-- Database: MongoDB, Mongoose
-- File Upload: Multer
+Backend is built with Node.js, Express, MongoDB, and Mongoose.
 
-## Project Structure
+## Installation Steps
 
-```text
-backend/
-  models/
-    Member.js
-  routes/
-    memberRoutes.js
-  uploads/
-  seedMembers.js
-  server.js
+### 1. Clone or open the project
 
-frontend/
-  src/
-    components/
-      MemberCard.jsx
-    pages/
-      HomePage.jsx
-      AddMemberPage.jsx
-      ViewMembersPage.jsx
-      MemberDetailsPage.jsx
-    App.js
-    AppView.jsx
-    config.js
-    index.css
-    main.jsx
+Open the project folder in your code editor or terminal.
+
+### 2. Install backend dependencies
+
+Go to the backend folder:
+
+```bash
+cd backend
+npm install
 ```
 
-## Features
+### 3. Install frontend dependencies
 
-### Frontend
+Go to the frontend folder:
 
-- Home page with navigation buttons
-- Add Member page with form validation
-- View Members page with image, name, and role
-- Member Details page with full member information
-- Simple CSS styling with centered layout
+```bash
+cd frontend
+npm install
+```
 
-### Backend
+### 4. Make sure MongoDB is running
 
-- `POST /api/members` to add a member with image upload
-- `GET /api/members` to fetch all members
-- `GET /api/members/:id` to fetch one member
-- Static image serving from the `uploads` folder
+Start MongoDB on your system before running the backend.
 
-## Database Model
-
-Each member has:
-
-- `name`
-- `role`
-- `email`
-- `image`
-
-## How To Run
-
-### 1. Start MongoDB
-
-Make sure MongoDB is running locally.
-
-Default database used:
+Default MongoDB connection used in this project:
 
 ```text
 mongodb://127.0.0.1:27017/student-team-members-app
 ```
 
-### 2. Run the backend
+## API Endpoints
 
-Open a terminal in `backend/` and run:
+### 1. Add a new member
+
+```text
+POST /api/members
+```
+
+Fields:
+- `name`
+- `role`
+- `email`
+- `image`
+
+### 2. Get all members
+
+```text
+GET /api/members
+```
+
+Returns all team members.
+
+### 3. Get member by ID
+
+```text
+GET /api/members/:id
+```
+
+Returns details of one member.
+
+Replace `:id` with the actual MongoDB member ID.
+
+### 4. Update member by ID
+
+```text
+PUT /api/members/:id
+```
+
+Updates member information.
+
+Fields:
+- `name`
+- `role`
+- `email`
+- `image` (optional while editing)
+
+## How To Run The App
+
+### Run backend
+
+Open a terminal in the `backend` folder and run:
 
 ```bash
-npm install
 npm run dev
 ```
 
@@ -97,12 +111,11 @@ Backend runs on:
 http://localhost:5000
 ```
 
-### 3. Run the frontend
+### Run frontend
 
-Open another terminal in `frontend/` and run:
+Open another terminal in the `frontend` folder and run:
 
 ```bash
-npm install
 npm run dev
 ```
 
@@ -112,60 +125,19 @@ Frontend runs on:
 http://localhost:5173
 ```
 
-## Sample Data
+## Browser Test URLs
 
-This project includes a seed script to add random sample members with local placeholder SVG profile photos.
+You can test these GET APIs in the browser:
 
-Run this inside `backend/`:
+```text
+http://localhost:5000/api/members
+http://localhost:5000/api/members/:id
+```
+
+## Optional Sample Data
+
+To add sample members with placeholder photos, run this in the `backend` folder:
 
 ```bash
 npm run seed
 ```
-
-The seed script:
-
-- adds multiple sample members
-- skips duplicates using email
-- uses placeholder images stored in `backend/uploads`
-
-## API Routes
-
-### Get all members
-
-```text
-GET /api/members
-```
-
-### Get one member by ID
-
-```text
-GET /api/members/:id
-```
-
-Replace `:id` with the actual MongoDB member ID.
-
-### Add a new member
-
-```text
-POST /api/members
-```
-
-Form fields:
-
-- `name`
-- `role`
-- `email`
-- `image`
-
-## Notes
-
-- Uploaded images are saved in `backend/uploads`
-- Placeholder sample photos are also stored in `backend/uploads`
-- The frontend API base URL is set in `frontend/src/config.js`
-
-## Example Pages
-
-- `/` for Home
-- `/add-member` for Add Member
-- `/members` for View Members
-- `/members/:id` for Member Details

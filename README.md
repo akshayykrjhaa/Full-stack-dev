@@ -1,16 +1,171 @@
-# React + Vite
+# Student Team Members Management Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and beginner-friendly MERN stack project for managing student team members.
 
-Currently, two official plugins are available:
+This project lets you:
+- add a new team member
+- upload a member photo
+- view all members
+- open full member details
+- seed MongoDB with sample members and placeholder photos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+- Frontend: React, React Router, Axios, Vite
+- Backend: Node.js, Express
+- Database: MongoDB, Mongoose
+- File Upload: Multer
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Project Structure
 
-## Expanding the ESLint configuration
+```text
+backend/
+  models/
+    Member.js
+  routes/
+    memberRoutes.js
+  uploads/
+  seedMembers.js
+  server.js
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project
+frontend/
+  src/
+    components/
+      MemberCard.jsx
+    pages/
+      HomePage.jsx
+      AddMemberPage.jsx
+      ViewMembersPage.jsx
+      MemberDetailsPage.jsx
+    App.js
+    AppView.jsx
+    config.js
+    index.css
+    main.jsx
+```
+
+## Features
+
+### Frontend
+
+- Home page with navigation buttons
+- Add Member page with form validation
+- View Members page with image, name, and role
+- Member Details page with full member information
+- Simple CSS styling with centered layout
+
+### Backend
+
+- `POST /api/members` to add a member with image upload
+- `GET /api/members` to fetch all members
+- `GET /api/members/:id` to fetch one member
+- Static image serving from the `uploads` folder
+
+## Database Model
+
+Each member has:
+
+- `name`
+- `role`
+- `email`
+- `image`
+
+## How To Run
+
+### 1. Start MongoDB
+
+Make sure MongoDB is running locally.
+
+Default database used:
+
+```text
+mongodb://127.0.0.1:27017/student-team-members-app
+```
+
+### 2. Run the backend
+
+Open a terminal in `backend/` and run:
+
+```bash
+npm install
+npm run dev
+```
+
+Backend runs on:
+
+```text
+http://localhost:5000
+```
+
+### 3. Run the frontend
+
+Open another terminal in `frontend/` and run:
+
+```bash
+npm install
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+## Sample Data
+
+This project includes a seed script to add random sample members with local placeholder SVG profile photos.
+
+Run this inside `backend/`:
+
+```bash
+npm run seed
+```
+
+The seed script:
+
+- adds multiple sample members
+- skips duplicates using email
+- uses placeholder images stored in `backend/uploads`
+
+## API Routes
+
+### Get all members
+
+```text
+GET /api/members
+```
+
+### Get one member by ID
+
+```text
+GET /api/members/:id
+```
+
+Replace `:id` with the actual MongoDB member ID.
+
+### Add a new member
+
+```text
+POST /api/members
+```
+
+Form fields:
+
+- `name`
+- `role`
+- `email`
+- `image`
+
+## Notes
+
+- Uploaded images are saved in `backend/uploads`
+- Placeholder sample photos are also stored in `backend/uploads`
+- The frontend API base URL is set in `frontend/src/config.js`
+
+## Example Pages
+
+- `/` for Home
+- `/add-member` for Add Member
+- `/members` for View Members
+- `/members/:id` for Member Details

@@ -32,31 +32,41 @@ function MemberDetailsPage() {
         {error && <p className="error-text">{error}</p>}
 
         {!loading && !error && member && (
-          <>
-            <img
-              src={`${API_BASE_URL}/uploads/${member.image}`}
-              alt={member.name}
-              className="details-image"
-            />
-
-            <h1>{member.name}</h1>
-            <p className="detail-row">
-              <strong>Role:</strong> {member.role}
-            </p>
-            <p className="detail-row">
-              <strong>Email:</strong> {member.email}
-            </p>
-
-            <div className="button-group">
-              <Link to="/members" className="button secondary-button">
-                Back to Members
-              </Link>
-
-              <Link to="/" className="button">
-                Home
-              </Link>
+          <div className="details-layout">
+            <div className="details-media-wrap">
+              <img
+                src={`${API_BASE_URL}/uploads/${member.image}`}
+                alt={member.name}
+                className="details-image"
+              />
             </div>
-          </>
+
+            <div className="details-content">
+              <p className="eyebrow">Member Profile</p>
+              <h1>{member.name}</h1>
+
+              <div className="detail-list">
+                <p className="detail-row">
+                  <span>Role</span>
+                  <strong>{member.role}</strong>
+                </p>
+                <p className="detail-row">
+                  <span>Email</span>
+                  <strong>{member.email}</strong>
+                </p>
+              </div>
+
+              <div className="button-group">
+                <Link to="/members" className="button secondary-button">
+                  Back to Members
+                </Link>
+
+                <Link to="/" className="button">
+                  Home
+                </Link>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

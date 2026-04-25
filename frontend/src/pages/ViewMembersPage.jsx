@@ -26,13 +26,22 @@ function ViewMembersPage() {
 
   return (
     <div className="page">
-      <div className="content-box">
-        <h1>View Members</h1>
-        <p className="page-text">All saved student team members are shown below.</p>
+      <section className="content-box members-view">
+        <div className="section-head">
+          <div>
+            <p className="eyebrow">Directory</p>
+            <h1>Team Members</h1>
+            <p className="page-text">All saved student team members are listed below.</p>
+          </div>
+
+          <div className="summary-chip">
+            {loading ? "Updating..." : `${members.length} Profiles`}
+          </div>
+        </div>
 
         <div className="top-actions">
-          <Link to="/" className="text-link">
-            Back to Home
+          <Link to="/" className="button secondary-button">
+            Home
           </Link>
 
           <Link to="/add-member" className="button">
@@ -52,7 +61,7 @@ function ViewMembersPage() {
             <MemberCard key={member._id} member={member} />
           ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }

@@ -59,12 +59,13 @@ function AddMemberPage() {
   return (
     <div className="page">
       <div className="card form-card">
+        <p className="eyebrow">Create Profile</p>
         <h1>Add Member</h1>
-        <p className="page-text">Fill the form below to add a new team member.</p>
+        <p className="page-text">Fill in each field to create a polished team profile.</p>
 
         <form onSubmit={handleSubmit} className="form">
-          <label>
-            Name
+          <label className="field">
+            <span>Name</span>
             <input
               type="text"
               name="name"
@@ -75,8 +76,8 @@ function AddMemberPage() {
             />
           </label>
 
-          <label>
-            Role
+          <label className="field">
+            <span>Role</span>
             <input
               type="text"
               name="role"
@@ -87,8 +88,8 @@ function AddMemberPage() {
             />
           </label>
 
-          <label>
-            Email
+          <label className="field">
+            <span>Email</span>
             <input
               type="email"
               name="email"
@@ -99,16 +100,24 @@ function AddMemberPage() {
             />
           </label>
 
-          <label>
-            Image
+          <label className="field">
+            <span>Image</span>
             <input type="file" accept="image/*" onChange={handleImageChange} required />
+
+            {image && <small className="file-hint">Selected: {image.name}</small>}
           </label>
 
           {error && <p className="error-text">{error}</p>}
 
-          <button type="submit" className="button" disabled={isSubmitting}>
-            {isSubmitting ? "Saving..." : "Save Member"}
-          </button>
+          <div className="button-group form-actions">
+            <button type="submit" className="button" disabled={isSubmitting}>
+              {isSubmitting ? "Saving..." : "Save Member"}
+            </button>
+
+            <Link to="/members" className="button secondary-button">
+              Cancel
+            </Link>
+          </div>
         </form>
 
         <Link to="/" className="text-link">

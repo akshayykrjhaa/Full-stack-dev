@@ -59,13 +59,12 @@ function AddMemberPage() {
   return (
     <div className="page">
       <div className="card form-card">
-        <p className="eyebrow">Create Profile</p>
         <h1>Add Member</h1>
-        <p className="page-text">Fill in each field to create a polished team profile.</p>
+        <p className="page-text">Fill the form below to add a new team member.</p>
 
         <form onSubmit={handleSubmit} className="form">
-          <label className="field">
-            <span>Name</span>
+          <label>
+            Name
             <input
               type="text"
               name="name"
@@ -76,8 +75,8 @@ function AddMemberPage() {
             />
           </label>
 
-          <label className="field">
-            <span>Role</span>
+          <label>
+            Role
             <input
               type="text"
               name="role"
@@ -88,8 +87,8 @@ function AddMemberPage() {
             />
           </label>
 
-          <label className="field">
-            <span>Email</span>
+          <label>
+            Email
             <input
               type="email"
               name="email"
@@ -100,24 +99,16 @@ function AddMemberPage() {
             />
           </label>
 
-          <label className="field">
-            <span>Image</span>
+          <label>
+            Image
             <input type="file" accept="image/*" onChange={handleImageChange} required />
-
-            {image && <small className="file-hint">Selected: {image.name}</small>}
           </label>
 
           {error && <p className="error-text">{error}</p>}
 
-          <div className="button-group form-actions">
-            <button type="submit" className="button" disabled={isSubmitting}>
-              {isSubmitting ? "Saving..." : "Save Member"}
-            </button>
-
-            <Link to="/members" className="button secondary-button">
-              Cancel
-            </Link>
-          </div>
+          <button type="submit" className="button" disabled={isSubmitting}>
+            {isSubmitting ? "Saving..." : "Save Member"}
+          </button>
         </form>
 
         <Link to="/" className="text-link">

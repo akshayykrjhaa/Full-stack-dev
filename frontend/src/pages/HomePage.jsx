@@ -4,7 +4,7 @@ function HomePage() {
   return (
     <div className="page">
       <div className="card home-card">
-        <p className="small-label">MERN Stack Mini Project</p>
+        <p className="small-label">FULL STACK DEVELOPMENT PROJECT</p>
         <h1>Student Team Members Management</h1>
         <p className="page-text">
           Add your student team members, view the list, and open full member details.

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from "../config";
 
 function MemberDetailsPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const [member, setMember] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -48,12 +49,16 @@ function MemberDetailsPage() {
             </p>
 
             <div className="button-group">
+              <button
+                type="button"
+                className="button"
+                onClick={() => navigate(`/members/${member._id}/edit`)}
+              >
+                Edit Member
+              </button>
+
               <Link to="/members" className="button secondary-button">
                 Back to Members
-              </Link>
-
-              <Link to="/" className="button">
-                Home
               </Link>
             </div>
           </>

@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 import AddMemberPage from "./pages/AddMemberPage";
 import ViewMembersPage from "./pages/ViewMembersPage";
 import MemberDetailsPage from "./pages/MemberDetailsPage";
+import EditMemberPage from "./pages/EditMemberPage";
 
 function AppView() {
   return (
@@ -11,6 +12,7 @@ function AppView() {
       <Route path="/add-member" element={<AddMemberPage />} />
       <Route path="/members" element={<ViewMembersPage />} />
       <Route path="/members/:id" element={<MemberDetailsPage />} />
+      <Route path="/members/:id/edit" element={<EditMemberPage />} />
     </Routes>
   );
 }

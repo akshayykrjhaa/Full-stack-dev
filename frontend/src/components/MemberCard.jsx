@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../config";
 
 function MemberCard({ member }) {
+  const navigate = useNavigate();
+
   return (
     <div className="member-card">
       <img
@@ -13,9 +15,19 @@ function MemberCard({ member }) {
       <h3>{member.name}</h3>
       <p>{member.role}</p>
 
-      <Link to={`/members/${member._id}`} className="button secondary-button">
-        View Details
-      </Link>
+      <div className="button-group card-actions">
+        <Link to={`/members/${member._id}`} className="button secondary-button">
+          View Details
+        </Link>
+
+        <button
+          type="button"
+          className="button"
+          onClick={() => navigate(`/members/${member._id}/edit`)}
+        >
+          Edit
+        </button>
+      </div>
     </div>
   );
 }
